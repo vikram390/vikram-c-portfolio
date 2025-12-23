@@ -21,6 +21,9 @@
         background-color: #fcfcfc;
         color: #1a1a1a;
         scroll-behavior: smooth;
+        margin: 0;
+        padding: 0;
+        width: 100%;
         overflow-x: hidden;
       }
       ::selection {
@@ -38,12 +41,12 @@
         opacity: 0.02;
         pointer-events: none;
         background-image: url('data:image/svg+xml,%3Csvg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg"%3E%3Cfilter id="noiseFilter"%3E%3CfeTurbulence type="fractalNoise" baseFrequency="0.65" numOctaves="3" stitchTiles="stitch"/%3E%3C/filter%3E%3Crect width="100%25" height="100%25" filter="url(%23noiseFilter)"/%3E%3C/svg%3E');
-        z-index: 1;
+        z-index: 5;
       }
       .mesh-gradient {
         position: fixed;
         inset: 0;
-        z-index: 0;
+        z-index: -1;
         background-color: #f8fafc;
         background-image: 
           radial-gradient(at 0% 0%, rgba(153, 246, 228, 0.15) 0px, transparent 50%),
@@ -100,22 +103,25 @@
       }
     </style>
     <script type="importmap">
-    {
-      "imports": {
-        "framer-motion": "https://esm.sh/framer-motion@^12.23.26",
-        "react/": "https://esm.sh/react@^19.2.3/",
-        "react": "https://esm.sh/react@^19.2.3",
-        "lucide-react": "https://esm.sh/lucide-react@^0.562.0",
-        "react-dom/": "https://esm.sh/react-dom@^19.2.3/",
-        "@react-three/drei": "https://esm.sh/@react-three/drei@^10.7.7",
-        "@react-three/fiber": "https://esm.sh/@react-three/fiber@^9.4.2",
-        "three": "https://esm.sh/three@^0.182.0"
-      }
-    }
-    </script>
+{
+  "imports": {
+    "framer-motion": "https://esm.sh/framer-motion@^12.23.26",
+    "react/": "https://esm.sh/react@^19.2.3/",
+    "react": "https://esm.sh/react@^19.2.3",
+    "lucide-react": "https://esm.sh/lucide-react@^0.562.0",
+    "react-dom": "https://esm.sh/react-dom@^19.2.3",
+    "react-dom/client": "https://esm.sh/react-dom@^19.2.3/client",
+    "@react-three/drei": "https://esm.sh/@react-three/drei@^10.7.7",
+    "@react-three/fiber": "https://esm.sh/@react-three/fiber@^9.4.2",
+    "three": "https://esm.sh/three@^0.182.0",
+    "react-dom/": "https://esm.sh/react-dom@^19.2.3/"
+  }
+}
+</script>
   </head>
   <body class="noise-bg">
     <div class="mesh-gradient"></div>
     <div id="root"></div>
+    <script type="module" src="index.tsx"></script>
   </body>
 </html>

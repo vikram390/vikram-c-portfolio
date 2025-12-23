@@ -1,5 +1,4 @@
 
-// Fix: Cleaned up malformed and duplicate React imports
 import React, { useState, useEffect } from 'react';
 import Navbar from './components/Navbar';
 import Hero from './components/Hero';
@@ -20,44 +19,48 @@ const App: React.FC = () => {
   const [loadingProgress, setLoadingProgress] = useState(0);
   const { scrollYProgress } = useScroll();
   
-  // Very subtle parallax for the entire content container to give a sense of depth
   const yContent = useTransform(scrollYProgress, [0, 1], [0, -50]);
 
   useEffect(() => {
-    // Simulate initial loading progress
+    // Artificial progress for the loader aesthetics
     const interval = setInterval(() => {
       setLoadingProgress((prev) => {
-        if (prev >= 90) {
+        if (prev >= 95) {
           clearInterval(interval);
-          return 90;
+          return 95;
         }
-        return prev + Math.random() * 15;
+        return prev + Math.random() * 5;
       });
-    }, 150);
+    }, 100);
 
-    const handleLoad = () => {
+    const finishLoading = () => {
       setLoadingProgress(100);
       setTimeout(() => {
         setIsLoading(false);
-      }, 500);
+      }, 600);
     };
 
+    // If document is already loaded, finish immediately
     if (document.readyState === 'complete') {
-      handleLoad();
+      finishLoading();
     } else {
-      window.addEventListener('load', handleLoad);
+      window.addEventListener('load', finishLoading);
     }
 
+    // Safety fallback: Force clear loader after 4 seconds regardless
+    const safetyTimeout = setTimeout(finishLoading, 4000);
+
     return () => {
-      window.removeEventListener('load', handleLoad);
+      window.removeEventListener('load', finishLoading);
       clearInterval(interval);
+      clearTimeout(safetyTimeout);
     };
   }, []);
 
   return (
     <div className="relative min-h-screen selection:bg-teal-100 selection:text-teal-900">
-      <AnimatePresence>
-        {isLoading && <Loader progress={loadingProgress} />}
+      <AnimatePresence mode="wait">
+        {isLoading && <Loader key="loader" progress={loadingProgress} />}
       </AnimatePresence>
 
       <div className="fixed inset-0 z-0 pointer-events-none">
@@ -121,7 +124,7 @@ const SectionWrapper: React.FC<{ children: React.ReactNode; id: string }> = ({ c
     whileInView={{ opacity: 1, y: 0 }}
     viewport={{ once: true, margin: "-100px" }}
     transition={{ duration: 1, ease: [0.22, 1, 0.36, 1] }}
-    className="section-surface rounded-[64px] p-8 md:p-20 relative overflow-hidden backdrop-blur-[2px]"
+    className="section-surface rounded-[48px] md:rounded-[64px] p-6 md:p-20 relative overflow-hidden backdrop-blur-[2px]"
   >
     {children}
   </motion.section>
