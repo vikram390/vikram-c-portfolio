@@ -142,6 +142,6 @@ export const SKILLS: SkillCategory[] = [
 export const LANGUAGES: Language[] = [
   { name: "Tamil", level: "Fluent (Mother Tongue)", proficiency: 100 },
   { name: "English", level: "Fluent", proficiency: 90 },
-  { name: "Hindi", level: "Basic", proficiency: 40 },
-  { name: "Japanese", level: "N4 Level", proficiency: 45 }
+  { name: "Hindi", level: "Basic", proficiency: 20 },
+  { name: "Japanese", level: "N5 Level", proficiency: 20 }
 ];
