@@ -92,51 +92,55 @@ const ProjectCard: React.FC<{ project: Project; index: number }> = ({ project, i
 
       <AnimatePresence>
         {isOpen && (
-          <div className="fixed inset-0 z-[100] flex items-center justify-center p-6">
+          <div className="fixed inset-0 z-[100] flex items-center justify-center p-4 md:p-6">
             <motion.div
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
               onClick={() => setIsOpen(false)}
-              className="absolute inset-0 bg-gray-900/40 backdrop-blur-md"
+              className="absolute inset-0 bg-gray-900/60 backdrop-blur-md"
             />
             <motion.div
               layoutId={`container-${project.id}`}
-              className="relative w-full max-w-4xl bg-white rounded-[48px] shadow-2xl overflow-hidden max-h-[90vh] flex flex-col"
+              className="relative w-[95%] md:w-full max-w-4xl bg-white rounded-[32px] md:rounded-[48px] shadow-2xl overflow-hidden max-h-[85vh] md:max-h-[90vh] flex flex-col"
             >
-              <button onClick={() => setIsOpen(false)} className="absolute top-6 right-6 p-3 bg-white/80 backdrop-blur-md rounded-full shadow-lg z-[110] hover:bg-teal-600 hover:text-white transition-all">
-                <X size={20} />
+              <button 
+                onClick={() => setIsOpen(false)} 
+                className="absolute top-4 right-4 md:top-6 md:right-6 p-2.5 md:p-3 bg-white/90 backdrop-blur-md rounded-full shadow-lg z-[110] text-gray-900 hover:bg-teal-600 hover:text-white transition-all active:scale-95"
+                aria-label="Close modal"
+              >
+                <X size={18} className="md:size-5" />
               </button>
 
               <div className="overflow-y-auto">
-                <motion.div layoutId={`image-${project.id}`} className="w-full h-[320px]">
+                <motion.div layoutId={`image-${project.id}`} className="w-full h-[200px] md:h-[320px]">
                   <img src={project.image} alt={project.title} className="w-full h-full object-cover" />
                 </motion.div>
                 
-                <div className="p-10 md:p-14">
-                  <div className="flex flex-wrap items-center gap-4 mb-6">
+                <div className="p-6 md:p-14">
+                  <div className="flex flex-wrap items-center gap-3 md:gap-4 mb-4 md:mb-6">
                     {project.status && (
-                      <span className="px-4 py-1.5 bg-teal-50 text-teal-600 rounded-full text-[10px] font-black uppercase tracking-[0.2em] border border-teal-100">
+                      <span className="px-3 py-1 md:px-4 md:py-1.5 bg-teal-50 text-teal-600 rounded-full text-[9px] md:text-[10px] font-black uppercase tracking-[0.2em] border border-teal-100">
                         {project.status}
                       </span>
                     )}
-                    <span className="text-gray-400 font-black uppercase tracking-[0.3em] text-[10px]">Project Insight</span>
+                    <span className="text-gray-400 font-black uppercase tracking-[0.2em] md:tracking-[0.3em] text-[9px] md:text-[10px]">Project Insight</span>
                   </div>
 
-                  <motion.h3 layoutId={`title-${project.id}`} className="text-4xl font-black text-gray-900 leading-tight mb-8">
+                  <motion.h3 layoutId={`title-${project.id}`} className="text-2xl md:text-4xl font-black text-gray-900 leading-tight mb-6 md:mb-8">
                     {project.title}
                   </motion.h3>
 
-                  <div className="grid grid-cols-1 md:grid-cols-3 gap-10 mb-10">
+                  <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-10 mb-8 md:mb-10">
                     <div className="md:col-span-2">
-                      <h4 className="text-[10px] font-black text-gray-400 uppercase tracking-widest mb-3">Description</h4>
-                      <p className="text-lg text-gray-600 leading-relaxed font-medium">{project.description}</p>
+                      <h4 className="text-[9px] md:text-[10px] font-black text-gray-400 uppercase tracking-widest mb-2 md:mb-3">Description</h4>
+                      <p className="text-base md:text-lg text-gray-600 leading-relaxed font-medium">{project.description}</p>
                     </div>
                     <div>
-                      <h4 className="text-[10px] font-black text-gray-400 uppercase tracking-widest mb-3">Technologies</h4>
-                      <div className="flex flex-wrap gap-2">
+                      <h4 className="text-[9px] md:text-[10px] font-black text-gray-400 uppercase tracking-widest mb-2 md:mb-3">Technologies</h4>
+                      <div className="flex flex-wrap gap-1.5 md:gap-2">
                         {project.tags.map(tag => (
-                          <span key={tag} className="px-4 py-1.5 bg-gray-50 text-gray-600 rounded-xl text-xs font-bold border border-gray-100">{tag}</span>
+                          <span key={tag} className="px-3 py-1 md:px-4 md:py-1.5 bg-gray-50 text-gray-600 rounded-xl text-[10px] md:text-xs font-bold border border-gray-100">{tag}</span>
                         ))}
                       </div>
                     </div>
@@ -148,11 +152,11 @@ const ProjectCard: React.FC<{ project: Project; index: number }> = ({ project, i
                         href={project.repoUrl} 
                         target="_blank" 
                         rel="noopener noreferrer"
-                        className="flex-1 py-5 bg-gray-900 text-white rounded-[28px] text-center font-bold hover:bg-black transition-all flex items-center justify-center gap-3 shadow-xl shadow-gray-200"
+                        className="flex-1 py-4 md:py-5 bg-gray-900 text-white rounded-[20px] md:rounded-[28px] text-center text-sm md:text-base font-bold hover:bg-black transition-all flex items-center justify-center gap-2 md:gap-3 shadow-xl shadow-gray-200"
                       >
-                        <Github size={20} />
+                        <Github size={18} className="md:size-5" />
                         View Repository
-                        <ExternalLink size={16} className="opacity-50" />
+                        <ExternalLink size={14} className="md:size-4 opacity-50" />
                       </a>
                     </div>
                   )}
@@ -169,12 +173,12 @@ const ProjectCard: React.FC<{ project: Project; index: number }> = ({ project, i
 const Projects: React.FC = () => {
   return (
     <div className="max-w-7xl mx-auto">
-      <div className="text-center mb-20">
+      <div className="text-center mb-12 md:mb-20">
         <span className="text-teal-600 font-bold uppercase tracking-widest text-xs mb-4 block">Portfolio</span>
-        <h2 className="text-4xl md:text-6xl font-extrabold text-gray-900">Recent <span className="text-teal-600">Projects</span></h2>
+        <h2 className="text-3xl md:text-6xl font-extrabold text-gray-900">Recent <span className="text-teal-600">Projects</span></h2>
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-10">
         {PROJECTS.map((project, index) => (
           <ProjectCard key={project.id} project={project} index={index} />
         ))}

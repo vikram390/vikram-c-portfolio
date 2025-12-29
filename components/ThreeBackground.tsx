@@ -4,15 +4,6 @@ import { Canvas, useFrame, useThree } from '@react-three/fiber';
 import { Float, Sphere, MeshDistortMaterial, ContactShadows } from '@react-three/drei';
 import * as THREE from 'three';
 
-const Group = 'group' as any;
-const Mesh = 'mesh' as any;
-const TorusKnotGeometry = 'torusKnotGeometry' as any;
-const MeshStandardMaterial = 'meshStandardMaterial' as any;
-const BoxGeometry = 'boxGeometry' as any;
-const OctahedronGeometry = 'octahedronGeometry' as any;
-const AmbientLight = 'ambientLight' as any;
-const PointLight = 'pointLight' as any;
-
 const InteractiveGroup = ({ children }: { children?: React.ReactNode }) => {
   const groupRef = useRef<THREE.Group>(null);
   const { mouse } = useThree();
@@ -29,7 +20,7 @@ const InteractiveGroup = ({ children }: { children?: React.ReactNode }) => {
     }
   });
 
-  return <Group ref={groupRef}>{children}</Group>;
+  return <group ref={groupRef}>{children}</group>;
 };
 
 const FloatingShapes = () => {
@@ -62,25 +53,25 @@ const FloatingShapes = () => {
       </Float>
 
       <Float speed={1.2} rotationIntensity={1.5} floatIntensity={1.2}>
-        <Mesh position={[9, -5, -8]}>
-          <TorusKnotGeometry args={[1.5, 0.5, 128, 16]} />
-          <MeshStandardMaterial color="#bae6fd" transparent opacity={0.25} wireframe />
-        </Mesh>
+        <mesh position={[9, -5, -8]}>
+          <torusKnotGeometry args={[1.5, 0.5, 128, 16]} />
+          <meshStandardMaterial color="#bae6fd" transparent opacity={0.25} wireframe />
+        </mesh>
       </Float>
 
       <Float speed={1.8} rotationIntensity={0.5} floatIntensity={1.5}>
-        <Mesh position={[-5, -7, -4]}>
-          <BoxGeometry args={[2, 2, 2]} />
-          <MeshStandardMaterial color="#fef08a" transparent opacity={0.2} />
-        </Mesh>
+        <mesh position={[-5, -7, -4]}>
+          <boxGeometry args={[2, 2, 2]} />
+          <meshStandardMaterial color="#fef08a" transparent opacity={0.2} />
+        </mesh>
       </Float>
 
       {smallShapes.map((shape, i) => (
         <Float key={i} speed={shape.speed} rotationIntensity={1.2} floatIntensity={0.8}>
-          <Mesh position={shape.position} scale={shape.scale}>
-            <OctahedronGeometry />
-            <MeshStandardMaterial color={shape.color} transparent opacity={0.25} />
-          </Mesh>
+          <mesh position={shape.position} scale={shape.scale}>
+            <octahedronGeometry />
+            <meshStandardMaterial color={shape.color} transparent opacity={0.25} />
+          </mesh>
         </Float>
       ))}
     </InteractiveGroup>
@@ -92,12 +83,12 @@ const ThreeBackground: React.FC = () => {
     <div style={{ position: 'fixed', inset: 0, zIndex: 0, pointerEvents: 'none' }}>
       <Canvas 
         camera={{ position: [0, 0, 20], fov: 45 }} 
-        dpr={[1, 2]} // High quality DPR for crisp 3D elements
+        dpr={[1, 2]} 
         gl={{ powerPreference: 'high-performance', antialias: true, alpha: true }}
       >
-        <AmbientLight intensity={0.6} />
-        <PointLight position={[15, 15, 15]} intensity={1.5} />
-        <PointLight position={[-15, -15, -15]} intensity={0.5} color="#99f6e4" />
+        <ambientLight intensity={0.6} />
+        <pointLight position={[15, 15, 15]} intensity={1.5} />
+        <pointLight position={[-15, -15, -15]} intensity={0.5} color="#99f6e4" />
         <FloatingShapes />
         <ContactShadows opacity={0.2} scale={30} blur={2.5} far={15} resolution={256} color="#000000" />
       </Canvas>

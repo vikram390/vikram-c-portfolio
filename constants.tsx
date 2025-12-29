@@ -62,24 +62,46 @@ export const EDUCATION: EducationItem[] = [
 export const EXPERIENCE: ExperienceItem[] = [
   {
     title: "Backend Development Intern",
-    company: "FutureTech Solutions",
-    location: "Remote",
-    period: "June 2024 – Present",
+    company: "Let's Gemetech",
+    location: "Offline",
+    period: "2025",
     responsibilities: [
-      "Collaborating on building scalable REST APIs using Node.js and PostgreSQL.",
-      "Optimizing backend performance by implementing efficient caching strategies.",
-      "Integrating third-party services for authentication and payment processing."
+      "Gaining hands-on experience in backend architecture and database management.",
+      "Collaborating with the development team on server-side logic and API integration.",
+      "Working on-site to optimize system performance and maintain code quality."
     ]
   },
   {
-    title: "Frontend Contributor",
-    company: "Open Source Community",
-    location: "Remote",
-    period: "Jan 2024 – May 2024",
+    title: "Web Development Intern",
+    company: "Cognifyz Technologies",
+    location: "Online",
+    period: "2025",
     responsibilities: [
-      "Enhanced user experience for open-source dashboards using React and Tailwind CSS.",
-      "Wrote clean, modular code following industry-standard design patterns.",
-      "Fixed UI bugs and improved accessibility across multiple community projects."
+      "Contributing to full-stack web solutions in a dynamic remote environment.",
+      "Building and testing responsive web applications using modern frameworks.",
+      "Participating in virtual sprints and code review sessions to improve development workflows."
+    ]
+  },
+  {
+    title: "Frontend Development Intern",
+    company: "Designz Media",
+    location: "Offline",
+    period: "2025",
+    responsibilities: [
+      "Focusing on crafting highly interactive and visually appealing user interfaces.",
+      "Implementing responsive designs and ensuring cross-browser compatibility.",
+      "Working closely with design teams to translate creative concepts into functional frontend code."
+    ]
+  },
+  {
+    title: "Web Development Intern",
+    company: "Ether Infotech",
+    location: "Offline",
+    period: "2024",
+    responsibilities: [
+      "Developed foundational skills in web development through intensive on-site training.",
+      "Built several web modules utilizing HTML, CSS, and JavaScript core concepts.",
+      "Supported project delivery by troubleshooting frontend issues and assisting in deployment tasks."
     ]
   }
 ];
