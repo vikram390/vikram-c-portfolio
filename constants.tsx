@@ -9,7 +9,7 @@ export const USER_INFO = {
   phone: "+91 6382287098",
   github: "https://github.com/vikram390",
   linkedin: "https://www.linkedin.com/in/vikramchithaiya",
-  resume: "https://drive.google.com/file/d/1YZyEw15u0oXtSDTfwR3j2Ht25sBYXsjN/view?usp=drive_link",
+  resume: "https://drive.google.com/file/d/1C-NpxXUxF9BZHyWJmBA3pHw7vKlEMKME/view?usp=drive_link",
   profilePhoto: "https://i.ibb.co/Gv8dSYsQ/Whats-App-Image-2025-09-30-at-12-00-54-d744245e.jpg"
 };
 
@@ -20,24 +20,24 @@ export const PROJECTS: Project[] = [
     description: "A simple backend-oriented system that stores and manages user data using Excel as a lightweight database. Includes basic CRUD operations and structured data handling.",
     image: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?q=80&w=800&auto=format&fit=crop",
     tags: ["HTML", "CSS", "JavaScript", "Node.js", "Excel"],
-    repoUrl: "https://github.com/vikram390"
+    repoUrl: "https://github.com/vikram390/personal-data-collector"
   },
   {
     id: "portfolio-2024",
     title: "Portfolio Website",
     status: "Live & In Progress",
     description: "An interactive, 3D-animated personal portfolio designed and built within Google AI Studio. This project demonstrates AI-assisted development by integrating complex physics-based animations, a custom Three.js background, and a highly responsive React architecture.",
-    image: "https://images.unsplash.com/photo-1517139272240-0822e0e85aed?q=80&w=800&auto=format&fit=crop",
+    image: "https://images.unsplash.com/photo-1507238691740-187a5b1d37b8?q=80&w=800&auto=format&fit=crop",
     tags: ["React", "Three.js", "Framer Motion", "Google AI Studio"],
-    repoUrl: "https://github.com/vikram390"
+    repoUrl: "https://github.com/vikram390/vikram-c-portfolio"
   },
   {
     id: "ai-ats-analyzer",
     title: "AI ATS Score Analyzer",
     description: "A project that analyzes resumes using AI concepts to estimate ATS compatibility and provide scoring insights. Focuses on resume structure, keyword relevance, and formatting effectiveness.",
     image: "https://images.unsplash.com/photo-1586281380349-632531db7ed4?q=80&w=800&auto=format&fit=crop",
-    tags: ["HTML", "CSS", "JavaScript", "AI-based logic"],
-    repoUrl: "https://github.com/vikram390"
+    tags: ["HTML", "CSS", "TypeScript", "AI-based logic"],
+    repoUrl: "https://github.com/vikram390/AI-ATS-Score"
   }
 ];
 

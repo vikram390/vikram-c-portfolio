@@ -12,17 +12,13 @@ import Languages from './components/Languages';
 import Contact from './components/Contact';
 import ThreeBackground from './components/ThreeBackground';
 import Loader from './components/Loader';
-import { motion, useScroll, useTransform, AnimatePresence } from 'framer-motion';
+import { motion, AnimatePresence } from 'framer-motion';
 
 const App: React.FC = () => {
   const [isLoading, setIsLoading] = useState(true);
   const [loadingProgress, setLoadingProgress] = useState(0);
-  const { scrollYProgress } = useScroll();
-  
-  const yContent = useTransform(scrollYProgress, [0, 1], [0, -50]);
 
   useEffect(() => {
-    // Artificial progress for the loader aesthetics
     const interval = setInterval(() => {
       setLoadingProgress((prev) => {
         if (prev >= 95) {
@@ -40,14 +36,12 @@ const App: React.FC = () => {
       }, 600);
     };
 
-    // If document is already loaded, finish immediately
     if (document.readyState === 'complete') {
       finishLoading();
     } else {
       window.addEventListener('load', finishLoading);
     }
 
-    // Safety fallback: Force clear loader after 4 seconds regardless
     const safetyTimeout = setTimeout(finishLoading, 4000);
 
     return () => {
@@ -58,7 +52,7 @@ const App: React.FC = () => {
   }, []);
 
   return (
-    <div className="relative min-h-screen selection:bg-teal-100 selection:text-teal-900">
+    <div className="relative min-h-screen selection:bg-teal-100 selection:text-teal-900 overflow-x-hidden">
       <AnimatePresence mode="wait">
         {isLoading && <Loader key="loader" progress={loadingProgress} />}
       </AnimatePresence>
@@ -69,13 +63,10 @@ const App: React.FC = () => {
 
       <Navbar />
       
-      <motion.main 
-        style={{ y: yContent }}
-        className="relative z-10 space-y-24 pb-24"
-      >
+      <main className="relative z-10 space-y-16 md:space-y-24 pb-24">
         <Hero />
         
-        <div className="max-w-7xl mx-auto px-6 space-y-24">
+        <div className="max-w-7xl mx-auto px-6 space-y-16 md:space-y-24">
           <SectionWrapper id="about">
             <About />
           </SectionWrapper>
@@ -108,7 +99,7 @@ const App: React.FC = () => {
             <Contact />
           </SectionWrapper>
         </div>
-      </motion.main>
+      </main>
 
       <footer className="relative z-20 py-16 text-center text-gray-400 text-sm bg-white/40 backdrop-blur-md border-t border-gray-100">
         <p className="font-medium">© {new Date().getFullYear()} Vikram C. Designed for modern performance.</p>
@@ -120,11 +111,11 @@ const App: React.FC = () => {
 const SectionWrapper: React.FC<{ children: React.ReactNode; id: string }> = ({ children, id }) => (
   <motion.section 
     id={id}
-    initial={{ opacity: 0, y: 40 }}
+    initial={{ opacity: 0, y: 30 }}
     whileInView={{ opacity: 1, y: 0 }}
-    viewport={{ once: true, margin: "-100px" }}
-    transition={{ duration: 1, ease: [0.22, 1, 0.36, 1] }}
-    className="section-surface rounded-[48px] md:rounded-[64px] p-6 md:p-20 relative overflow-hidden backdrop-blur-[2px]"
+    viewport={{ once: true, margin: "-50px" }}
+    transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
+    className="section-surface rounded-[40px] md:rounded-[64px] p-6 md:p-20 relative overflow-hidden backdrop-blur-[2px]"
   >
     {children}
   </motion.section>

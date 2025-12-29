@@ -1,7 +1,7 @@
 
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Github, Globe, ChevronRight, X, Clock } from 'lucide-react';
+import { Github, Globe, ChevronRight, X, Clock, ExternalLink } from 'lucide-react';
 import { PROJECTS } from '../constants';
 import { Project } from '../types';
 
@@ -11,6 +11,13 @@ const ProjectCard: React.FC<{ project: Project; index: number }> = ({ project, i
   useEffect(() => {
     document.body.style.overflow = isOpen ? 'hidden' : 'unset';
   }, [isOpen]);
+
+  const handleRepoClick = (e: React.MouseEvent) => {
+    e.stopPropagation();
+    if (project.repoUrl) {
+      window.open(project.repoUrl, '_blank', 'noopener,noreferrer');
+    }
+  };
 
   return (
     <>
@@ -30,7 +37,19 @@ const ProjectCard: React.FC<{ project: Project; index: number }> = ({ project, i
       >
         <motion.div layoutId={`image-${project.id}`} className="h-52 overflow-hidden relative">
           <img src={project.image} alt={project.title} className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" />
-          <div className="absolute inset-0 bg-teal-900/5 group-hover:bg-transparent transition-colors" />
+          <div className="absolute inset-0 bg-teal-900/0 group-hover:bg-teal-900/10 transition-colors" />
+          
+          {/* Direct Repo Icon Link on Card */}
+          <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+             <button 
+               onClick={handleRepoClick}
+               className="p-4 bg-white/90 backdrop-blur-md rounded-full shadow-xl text-gray-900 hover:bg-teal-600 hover:text-white transition-all transform hover:scale-110"
+               title="View Repository"
+             >
+               <Github size={24} />
+             </button>
+          </div>
+
           {project.status && (
             <div className="absolute top-4 right-4 px-4 py-1.5 bg-white/90 backdrop-blur-md rounded-full flex items-center gap-2 border border-white/50 shadow-sm">
               <Clock size={12} className="text-teal-500" />
@@ -53,8 +72,20 @@ const ProjectCard: React.FC<{ project: Project; index: number }> = ({ project, i
           <p className="text-sm text-gray-500 line-clamp-2 mb-6 font-medium leading-relaxed">
             {project.description}
           </p>
-          <div className="mt-auto flex items-center text-teal-600 font-bold text-xs gap-1 opacity-60 group-hover:opacity-100 transition-opacity">
-            View Project Details <ChevronRight size={14} />
+          
+          <div className="mt-auto flex items-center justify-between">
+            <div className="flex items-center text-teal-600 font-bold text-xs gap-1 opacity-60 group-hover:opacity-100 transition-opacity">
+              View Details <ChevronRight size={14} />
+            </div>
+            {project.repoUrl && (
+              <button 
+                onClick={handleRepoClick}
+                className="flex items-center gap-1.5 text-[10px] font-black uppercase tracking-widest text-gray-400 hover:text-teal-600 transition-colors"
+              >
+                <Github size={12} />
+                View Code
+              </button>
+            )}
           </div>
         </div>
       </motion.div>
@@ -111,17 +142,20 @@ const ProjectCard: React.FC<{ project: Project; index: number }> = ({ project, i
                     </div>
                   </div>
 
-                  <div className="flex">
-                    <a 
-                      href={project.repoUrl} 
-                      target="_blank" 
-                      rel="noopener noreferrer"
-                      className="flex-1 py-5 bg-gray-900 text-white rounded-[28px] text-center font-bold hover:bg-black transition-all flex items-center justify-center gap-3 shadow-xl shadow-gray-200"
-                    >
-                      <Github size={20} />
-                      View Repository
-                    </a>
-                  </div>
+                  {project.repoUrl && (
+                    <div className="flex">
+                      <a 
+                        href={project.repoUrl} 
+                        target="_blank" 
+                        rel="noopener noreferrer"
+                        className="flex-1 py-5 bg-gray-900 text-white rounded-[28px] text-center font-bold hover:bg-black transition-all flex items-center justify-center gap-3 shadow-xl shadow-gray-200"
+                      >
+                        <Github size={20} />
+                        View Repository
+                        <ExternalLink size={16} className="opacity-50" />
+                      </a>
+                    </div>
+                  )}
                 </div>
               </div>
             </motion.div>
